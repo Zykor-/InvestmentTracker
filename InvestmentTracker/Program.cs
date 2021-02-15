@@ -65,10 +65,10 @@ namespace InvestmentTracker
                         myPortfolio.removeInvestment(temp);
                         break;
                     case 4:
-
+                        //TODO
                         break;
                     case 5:
-                        
+                        //TODO
                         break;
                     case 9:
                         myPortfolio.savePortfolio(profileName);
