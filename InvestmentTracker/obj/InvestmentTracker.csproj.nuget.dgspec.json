@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jcorr\\source\\repos\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj": {}
+    "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jcorr\\source\\repos\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj": {
+    "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jcorr\\source\\repos\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj",
+        "projectUniqueName": "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj",
         "projectName": "InvestmentTracker",
-        "projectPath": "C:\\Users\\jcorr\\source\\repos\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj",
+        "projectPath": "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\InvestmentTracker.csproj",
         "packagesPath": "C:\\Users\\jcorr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jcorr\\source\\repos\\InvestmentTracker\\InvestmentTracker\\obj\\",
+        "outputPath": "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\Microsoft\\Xamarin\\NuGet\\"
