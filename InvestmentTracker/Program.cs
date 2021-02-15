@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 
@@ -30,6 +30,7 @@ namespace InvestmentTracker
             string temp, temp2, temp3, temp4;
 
             int choice = 0;
+            int subChoice = 0;
 
             while (choice != 9)
             {
@@ -57,7 +58,28 @@ namespace InvestmentTracker
                         temp3 = Console.ReadLine();
                         Console.WriteLine("Enter amount of stock/currency owned: ");
                         temp4 = Console.ReadLine();
-                        myPortfolio.addInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        while (subChoice != 2)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Does this look right?");
+                            Console.WriteLine("1 Yes, 2 No");
+                            Console.WriteLine("Enter investment name: ", temp);
+                            Console.WriteLine("Enter investment short name: ", temp2);
+                            Console.WriteLine("Enter initial investment amount: ", temp3);
+                            Console.WriteLine("Enter amount of stock/currency owned: ", temp4);
+                            subChoice = Convert.ToInt32(Console.ReadLine());
+                            switch(subChoice)
+                            {
+                                case 1:
+                                myPortfolio.addInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                                Console.WriteLine("");
+                                Console.WriteLine("Saved")
+                                case 2:
+                                break;
+                            }
+
+
+                        }
                         break;
                     case 3:
                         Console.WriteLine("Enter name of investment to remove");
