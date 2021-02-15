@@ -1,0 +1,13 @@
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.exe
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.deps.json
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.runtimeconfig.json
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.runtimeconfig.dev.json
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.dll
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\bin\Debug\netcoreapp3.1\InvestmentTracker.pdb
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.csprojAssemblyReference.cache
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.AssemblyInfoInputs.cache
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.AssemblyInfo.cs
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.dll
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.pdb
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.genruntimeconfig.cache
+C:\Users\jcorr\source\repos\InvestmentTracker\InvestmentTracker\obj\Debug\netcoreapp3.1\InvestmentTracker.csproj.CoreCompileInputs.cache
