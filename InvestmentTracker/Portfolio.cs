@@ -67,27 +67,15 @@ namespace InvestmentTracker
             }
         }
 
-        public void removeInvestment(string name)
-        {
-            for(int i = 0; i < investments.Count; i++)
-            {
-                if(name == investments[i].getName())
-                {
-                    investments.RemoveAt(i);
-                    break;
-                }
-            }
-        }
-
         public void display()
         {
-            Console.WriteLine("\nName \t\tOwned \t\t\tInvested \tValue \t\tGain/Loss");
+            Console.WriteLine("\nName \tOwned \t\tInvested \tValue \t\tGain/Loss");
 
             foreach (Investment invest in investments)
             {
-                Console.WriteLine(invest.getShortName() + "\t\t{0:N8}\t\t${1:N2}\t\t${2:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
+                Console.WriteLine(invest.getShortName() + "\t{0:N8}\t${1:N2}\t\t${2:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
             }
-            Console.WriteLine("Total" + "\t\t\t\t\t${0:N2} \t${1:N2} \t{2:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains());
+            Console.WriteLine("Total" + "\t\t\t${0:N2} \t${1:N2} \t{2:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains());
         }
 
         public void sortByValue()
@@ -107,7 +95,6 @@ namespace InvestmentTracker
 
             return value;
         }
-
 
         public double getTotalGains()
         {
