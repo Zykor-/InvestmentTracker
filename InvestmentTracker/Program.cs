@@ -1,10 +1,9 @@
 ﻿using System;
-using System.IO;
 
 
 //TODO
 // Perpetual removal of code smells
-// Transaction history
+// Transaction history ***Next on list***
 // Android app
 // Web app
 // buy/sell function (not actually functional) ***DONE***
@@ -25,7 +24,9 @@ namespace InvestmentTracker
             Portfolio myPortfolio = new Portfolio(profileName);
             Console.WriteLine("Loading portfolio...");
             myPortfolio.loadPortfolio(profileName);
+            Console.WriteLine("Loading market...");
             myPortfolio.loadMarket();
+            Console.WriteLine("Sorting...");
             myPortfolio.sortByValue();
             string temp, temp2, temp3, temp4;
 
@@ -72,9 +73,6 @@ namespace InvestmentTracker
                         break;
                 }
             }
-
-            
-
         }
     }
 }

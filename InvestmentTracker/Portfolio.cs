@@ -81,13 +81,13 @@ namespace InvestmentTracker
 
         public void display()
         {
-            Console.WriteLine("\nName \t\t Value \t\t Gain/Loss");
+            Console.WriteLine("\nName \t\tOwned \t\t\tInvested \tValue \t\tGain/Loss");
 
             foreach (Investment invest in investments)
             {
-                Console.WriteLine(invest.getShortName() + "\t\t ${0:N2}\t\t {1:N2}%", invest.getCurrentValue(), invest.getGains());
+                Console.WriteLine(invest.getShortName() + "\t\t{0:N8}\t\t${1:N2}\t\t${1:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
             }
-            Console.WriteLine("Total" + "\t\t ${0:N2} \t {1:N2}%\n", getTotalValue(), getTotalGains());
+            Console.WriteLine("Total" + "\t\t\t\t\t${0:N2} \t${1:N2} \t{2:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains());
         }
 
         public void sortByValue()
@@ -108,6 +108,7 @@ namespace InvestmentTracker
             return value;
         }
 
+
         public double getTotalGains()
         {
             double value = 0;
@@ -120,6 +121,17 @@ namespace InvestmentTracker
             }
 
             return ((value - invested) / invested) * 100;
+        }
+        public double getTotalNetInvested()
+        {
+            double value = 0;
+
+            foreach (Investment invest in investments)
+            {
+                value += invest.getNetInvested();
+            }
+
+            return value;
         }
         public void loadPortfolio(string profile)
         {
