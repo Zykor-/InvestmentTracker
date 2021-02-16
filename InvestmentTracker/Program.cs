@@ -3,7 +3,7 @@
 
 //TODO
 // Perpetual removal of code smells
-// Transaction history ***Next on list***
+// Transaction history ***Next on list*** and gains since last transaction
 // Android app
 // Web app
 // More analytics (probably after transaction history)
@@ -11,6 +11,7 @@
 // Real-time updating for market values
 // Graphical data
 // Figure out why values don't update in 'real' time as you buy/sell investments
+// make investment names input non-case sensitive
 
 //RECENTLY TODO-ED
 // buy/sell function (not actually functional) ***DONE***

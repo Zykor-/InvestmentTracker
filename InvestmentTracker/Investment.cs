@@ -11,6 +11,9 @@ namespace InvestmentTracker
         //marketValue in $
         //currentValue in $
         //amountOwned in stock/currency
+        //totalSpent in $
+        //totalEarned in $
+        //these last two will help track total amount actually spent as apposed to invested in some other manner, like mining, or recieving as a gift
         private string name;
         protected string shortName;
         protected string URL;
@@ -18,13 +21,13 @@ namespace InvestmentTracker
         protected double marketValue;
         protected double currentValue;
         protected double amountOwned;
+        protected double totalSpent;
+        protected double totalEarned;
         protected CryptoScraper coinMarketCapScraper;
-
-        protected string Name { get => name; set => name = value; }
 
         public Investment(string name, string shortName, double netInvested, double amountOwned)
         {
-            this.Name = name;
+            this.name = name;
             this.shortName = shortName;
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
@@ -34,7 +37,7 @@ namespace InvestmentTracker
             marketValue = coinMarketCapScraper.scrapePrice();
         } 
 
-        public string getName() { return Name; }
+        public string getName() { return name; }
         public string getShortName() { return shortName; }
         public string getURL() { return URL; }
         public double getNetInvested() { return netInvested; }
@@ -85,7 +88,7 @@ namespace InvestmentTracker
 
         public void display()
         {
-            Console.WriteLine(Name + " " + shortName + " " + currentValue);
+            Console.WriteLine(name + " " + shortName + " " + currentValue);
         }
 
     }
