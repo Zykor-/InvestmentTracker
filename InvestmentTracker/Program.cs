@@ -61,7 +61,7 @@ namespace InvestmentTracker
                     case 3:
                         Console.WriteLine("Enter the name of the investment you are selling");
                         temp = Console.ReadLine();
-                        Console.WriteLine("Enter amount spent in $");
+                        Console.WriteLine("Enter amount sold in $");
                         temp2 = Console.ReadLine();
                         Console.WriteLine("Enter amount of investment purchased");
                         temp3 = Console.ReadLine();

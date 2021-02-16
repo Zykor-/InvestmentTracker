@@ -85,7 +85,7 @@ namespace InvestmentTracker
 
             foreach (Investment invest in investments)
             {
-                Console.WriteLine(invest.getShortName() + "\t\t{0:N8}\t\t${1:N2}\t\t${1:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
+                Console.WriteLine(invest.getShortName() + "\t\t{0:N8}\t\t${1:N2}\t\t${2:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
             }
             Console.WriteLine("Total" + "\t\t\t\t\t${0:N2} \t${1:N2} \t{2:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains());
         }
