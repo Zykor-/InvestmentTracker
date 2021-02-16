@@ -6,12 +6,15 @@
 // Transaction history ***Next on list***
 // Android app
 // Web app
-// buy/sell function (not actually functional) ***DONE***
 // More analytics (probably after transaction history)
-// Split Investment class into 2 subclasses, one for stocks and one for cryptos (each will have different scrapers)
+// Split Investment class into 2 subclasses, one for stocks and one for cryptos (each will have different scrapers) or do I split scraper into sub classes?
 // Real-time updating for market values
 // Graphical data
-// 
+// Figure out why values don't update in 'real' time as you buy/sell investments
+
+//RECENTLY TODO-ED
+// buy/sell function (not actually functional) ***DONE***
+//
 
 namespace InvestmentTracker
 {
@@ -63,7 +66,7 @@ namespace InvestmentTracker
                         temp = Console.ReadLine();
                         Console.WriteLine("Enter amount sold in $");
                         temp2 = Console.ReadLine();
-                        Console.WriteLine("Enter amount of investment purchased");
+                        Console.WriteLine("Enter amount of investment sold");
                         temp3 = Console.ReadLine();
                         myPortfolio.sellInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;

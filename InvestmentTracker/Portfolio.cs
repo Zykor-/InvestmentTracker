@@ -52,7 +52,7 @@ namespace InvestmentTracker
                 {
                     if(name == invest.getName() || name == invest.getShortName())
                     {
-                        if(amountSold >= invest.getAmountOwned())
+                        if(amountSold > invest.getAmountOwned())
                         {
                             Console.WriteLine("You are trying to sell more than you own)");
                             break;
