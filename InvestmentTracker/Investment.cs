@@ -10,8 +10,8 @@ namespace InvestmentTracker
         //netInvested in $
         //marketValue in $
         //currentValue in $
-        //currentOwned in stock/currency
-        protected string name;
+        //amountOwned in stock/currency
+        private string name;
         protected string shortName;
         protected string URL;
         protected double netInvested;
@@ -20,9 +20,11 @@ namespace InvestmentTracker
         protected double amountOwned;
         protected CryptoScraper coinMarketCapScraper;
 
+        protected string Name { get => name; set => name = value; }
+
         public Investment(string name, string shortName, double netInvested, double amountOwned)
         {
-            this.name = name;
+            this.Name = name;
             this.shortName = shortName;
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
@@ -32,7 +34,7 @@ namespace InvestmentTracker
             marketValue = coinMarketCapScraper.scrapePrice();
         } 
 
-        public string getName() { return name; }
+        public string getName() { return Name; }
         public string getShortName() { return shortName; }
         public string getURL() { return URL; }
         public double getNetInvested() { return netInvested; }
@@ -42,22 +44,22 @@ namespace InvestmentTracker
         public CryptoScraper getCoinMarketCapScraper() { return coinMarketCapScraper; }
         public void setMarketValue(double marketValue) { this.marketValue = marketValue; }
 
-        public void purchase(double amount, double totalPrice)
+        public void purchase(double price, double amount)
         {
             if (amount > 0)
             {
-                netInvested += totalPrice;
+                netInvested += price;
                 amountOwned += amount;
             }
             else
                 Console.WriteLine("Invalid purchase amount");
         }
 
-        public void sell(double amount, double totalPrice)
+        public void sell(double price, double amount)
         {
-            if(amount < 0)
+            if(amount > 0)
             {
-                netInvested -= totalPrice;
+                netInvested -= price;
                 amountOwned -= amount;
             }
         }
@@ -83,7 +85,7 @@ namespace InvestmentTracker
 
         public void display()
         {
-            Console.WriteLine(name + " " + shortName + " " + currentValue);
+            Console.WriteLine(Name + " " + shortName + " " + currentValue);
         }
 
     }

@@ -20,9 +20,51 @@ namespace InvestmentTracker
             filePath = filePath.Substring(0, endPathIndex) + name + ".txt";
         }
 
-        public void addInvestment(string name, string shortName, double initialInvestment, double currentOwned)
+        public void buyInvestment(string name, string shortName, double amountInvested, double amountPurchased)
         {
-            investments.Add(new Investment(name, shortName, initialInvestment, currentOwned));
+            //if investment isn't already in portfolio, add to it
+            if(!investments.Exists(p => p.getName() == name))
+            {
+                investments.Add(new Investment(name, shortName, amountInvested, amountPurchased));
+            }
+            //else add to existing investment
+            else
+            {
+                foreach(Investment invest in investments)
+                {
+                    if(invest.getName() == name)
+                    {
+                        invest.purchase(amountInvested, amountPurchased);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void sellInvestment(string name, double amountInvested, double amountSold)
+        {
+            //if investment isn't in portfolio, throw error
+            if (!investments.Exists(p => p.getName() == name))
+                Console.WriteLine("You don't own any of this investment");
+            else
+            {
+                foreach(Investment invest in investments)
+                {
+                    if(name == invest.getName() || name == invest.getShortName())
+                    {
+                        if(amountSold >= invest.getAmountOwned())
+                        {
+                            Console.WriteLine("You are trying to sell more than you own)");
+                            break;
+                        }
+                        else
+                        {
+                            invest.sell(amountInvested, amountSold);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         public void removeInvestment(string name)
@@ -32,6 +74,7 @@ namespace InvestmentTracker
                 if(name == investments[i].getName())
                 {
                     investments.RemoveAt(i);
+                    break;
                 }
             }
         }
@@ -92,7 +135,7 @@ namespace InvestmentTracker
                     temp = input.ReadLine();
                     data = temp.Split(' ');
 
-                    addInvestment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]));
+                    buyInvestment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]));
                 }
 
                 input.Close();

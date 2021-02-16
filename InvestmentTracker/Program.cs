@@ -7,7 +7,7 @@ using System.IO;
 // Transaction history
 // Android app
 // Web app
-// buy/sell function (not actually functional)
+// buy/sell function (not actually functional) ***DONE***
 // More analytics (probably after transaction history)
 // Split Investment class into 2 subclasses, one for stocks and one for cryptos (each will have different scrapers)
 // Real-time updating for market values
@@ -35,10 +35,8 @@ namespace InvestmentTracker
             {
                 Console.WriteLine("Choose from the following options: ");
                 Console.WriteLine("1: View portfolio");
-                Console.WriteLine("2: Add investment");
-                Console.WriteLine("3: Remove investment");
-                Console.WriteLine("4: Buy investment");
-                Console.WriteLine("5: Sell investment");
+                Console.WriteLine("2: Buy investment");
+                Console.WriteLine("3: Sell investment");
                 Console.WriteLine("9: Save and exit");
 
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -49,26 +47,24 @@ namespace InvestmentTracker
                         myPortfolio.display();
                         break;
                     case 2:
-                        Console.WriteLine("Enter investment name: ");
+                        Console.WriteLine("Enter the name of the investment you are buying");
                         temp = Console.ReadLine();
-                        Console.WriteLine("Enter investment short name: ");
+                        Console.WriteLine("Enter investment short name");
                         temp2 = Console.ReadLine();
-                        Console.WriteLine("Enter initial investment amount: ");
+                        Console.WriteLine("Enter amount spent in $");
                         temp3 = Console.ReadLine();
-                        Console.WriteLine("Enter amount of stock/currency owned: ");
+                        Console.WriteLine("Enter amount of investment purchased");
                         temp4 = Console.ReadLine();
-                        myPortfolio.addInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        myPortfolio.buyInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
                         break;
                     case 3:
-                        Console.WriteLine("Enter name of investment to remove");
+                        Console.WriteLine("Enter the name of the investment you are selling");
                         temp = Console.ReadLine();
-                        myPortfolio.removeInvestment(temp);
-                        break;
-                    case 4:
-                        //TODO
-                        break;
-                    case 5:
-                        //TODO
+                        Console.WriteLine("Enter amount spent in $");
+                        temp2 = Console.ReadLine();
+                        Console.WriteLine("Enter amount of investment purchased");
+                        temp3 = Console.ReadLine();
+                        myPortfolio.sellInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;
                     case 9:
                         myPortfolio.savePortfolio(profileName);
