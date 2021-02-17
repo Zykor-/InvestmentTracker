@@ -3,7 +3,7 @@
 
 //TODO
 // Perpetual removal of code smells
-// Transaction history ***Next on list*** and gains since last transaction
+// Transaction history ***Next on list*** and gains since last transaction **** JIM WILL DO ****
 // Android app
 // Web app
 // More analytics (probably after transaction history)
