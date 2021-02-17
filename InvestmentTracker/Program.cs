@@ -11,7 +11,7 @@
 // Graphical data
 // Figure out why values don't update in 'real' time as you buy/sell investments
 // make investment names input non-case sensitive
-// add market values to transaction history *** JIM WILL DO ***
+// 
 
 //RECENTLY TODO-ED
 // buy/sell function (not actually functional)

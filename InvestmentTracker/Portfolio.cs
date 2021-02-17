@@ -25,7 +25,7 @@ namespace InvestmentTracker
             //if investment isn't already in portfolio, add to it
             if(!investments.Exists(p => p.getName() == name))
             {
-                investments.Add(new Investment(name, shortName, amountInvested, amountPurchased));
+                investments.Add(new Investment(name, shortName, amountInvested, amountPurchased, amountInvested/amountPurchased));
             }
             //else add to existing investment
             else
@@ -34,7 +34,7 @@ namespace InvestmentTracker
                 {
                     if(invest.getName() == name)
                     {
-                        invest.purchase(amountInvested, amountPurchased);
+                        invest.purchase(amountInvested, amountPurchased, amountInvested/amountPurchased);
                         break;
                     }
                 }
@@ -59,7 +59,7 @@ namespace InvestmentTracker
                         }
                         else
                         {
-                            invest.sell(amountInvested, amountSold);
+                            invest.sell(amountInvested, amountSold, amountInvested/amountSold);
                             break;
                         }
                     }
@@ -140,7 +140,7 @@ namespace InvestmentTracker
                     temp = input.ReadLine();
                     data = temp.Split(' ');
 
-                    investments.Add(new Investment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3])));
+                    investments.Add(new Investment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[2])/Convert.ToDouble(data[3])));
                 }
 
                 foreach(Investment invest in investments)

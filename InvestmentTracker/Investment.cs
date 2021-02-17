@@ -27,14 +27,14 @@ namespace InvestmentTracker
         protected CoinmarketcapScraper coinMarketCapScraper;
         protected List<string>[] transactions;
 
-        public Investment(string name, string shortName, double netInvested, double amountOwned)
+        public Investment(string name, string shortName, double netInvested, double amountOwned, double marketPrice)
         {
             this.name = name;
             this.shortName = shortName;
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
 
-            transactions = new List<string>[3];
+            transactions = new List<string>[4];
             for(int i = 0; i < transactions.Length; i++)
             {
                 transactions[i] = new List<string>();
@@ -43,6 +43,7 @@ namespace InvestmentTracker
             transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
             transactions[1].Add(Convert.ToString(netInvested));
             transactions[2].Add(Convert.ToString(amountOwned));
+            transactions[3].Add(Convert.ToString(marketPrice));
 
             filePath = Directory.GetCurrentDirectory();
 
@@ -58,7 +59,7 @@ namespace InvestmentTracker
         public CoinmarketcapScraper getCoinMarketCapScraper() { return coinMarketCapScraper; }
         public void setMarketValue(double marketValue) { this.marketValue = marketValue; }
 
-        public void purchase(double price, double amount)
+        public void purchase(double price, double amount, double marketPrice)
         {
             if (amount > 0)
             {
@@ -69,12 +70,13 @@ namespace InvestmentTracker
                 transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
                 transactions[1].Add(Convert.ToString(price));
                 transactions[2].Add(Convert.ToString(amount));
+                transactions[3].Add(Convert.ToString(marketPrice));
             }
             else
                 Console.WriteLine("Invalid purchase amount");
         }
 
-        public void sell(double price, double amount)
+        public void sell(double price, double amount, double marketPrice)
         {
             if (amount > 0)
             {
@@ -89,6 +91,7 @@ namespace InvestmentTracker
                 transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
                 transactions[1].Add(Convert.ToString(price));
                 transactions[2].Add(Convert.ToString(amount));
+                transactions[3].Add(Convert.ToString(marketPrice));
             }
         }
 
@@ -119,7 +122,7 @@ namespace InvestmentTracker
             StreamWriter output = new StreamWriter(filePath);
             for (int i = 0; i < transactions[0].Count; i++)
             {
-                output.WriteLine(transactions[0][i] + "#" + transactions[1][i] + "#" + transactions[2][i]);
+                output.WriteLine(transactions[0][i] + "#" + transactions[1][i] + "#" + transactions[2][i] + "#" + transactions[3][i]);
             }
 
             output.Close();
@@ -134,11 +137,12 @@ namespace InvestmentTracker
             {
                 StreamReader input = new StreamReader(filePath);
                 string temp;
-                string[] data = new string[3];
+                string[] data;
 
                 transactions[0].Clear();
                 transactions[1].Clear();
                 transactions[2].Clear();
+                transactions[3].Clear();
 
                 while (!input.EndOfStream)
                 {
@@ -148,6 +152,7 @@ namespace InvestmentTracker
                     transactions[0].Add(data[0]);
                     transactions[1].Add(data[1]);
                     transactions[2].Add(data[2]);
+                    transactions[3].Add(data[3]);
                 }
                 input.Close();
             }
