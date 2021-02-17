@@ -129,19 +129,23 @@ namespace InvestmentTracker
         }
         public void loadPortfolio(string profile)
         {
-            string temp;
-            string[] data = new string[4];
-
             if (File.Exists(filePath))
             {
                 StreamReader input = new StreamReader(filePath);
+                string temp;
+                string[] data;
 
                 while (!input.EndOfStream)
                 {
                     temp = input.ReadLine();
                     data = temp.Split(' ');
 
-                    buyInvestment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]));
+                    investments.Add(new Investment(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3])));
+                }
+
+                foreach(Investment invest in investments)
+                {
+                    invest.loadHistory(name);
                 }
 
                 input.Close();
@@ -152,12 +156,13 @@ namespace InvestmentTracker
             }
         }
 
-        public void savePortfolio(string profile)
+        public void savePortfolio()
         {
             StreamWriter output = new StreamWriter(filePath);
             foreach(Investment invest in investments)
             {
                 output.WriteLine(invest.getName() + " " + invest.getShortName() + " " + invest.getNetInvested() + " " + invest.getAmountOwned());
+                invest.saveHistory(name);
             }
 
             output.Close();

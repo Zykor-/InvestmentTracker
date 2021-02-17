@@ -3,7 +3,7 @@
 
 //TODO
 // Perpetual removal of code smells
-// Transaction history ***Next on list*** and gains since last transaction **** JIM WILL DO ****
+// gains since last transaction **** JIM WILL DO ****
 // Android app
 // Web app
 // More analytics (probably after transaction history)
@@ -17,6 +17,7 @@
 // buy/sell function (not actually functional)
 // added inheritence for scraper
 // Real-time updating for market values *** I think i fixed this ***
+// Transaction History saving and loading
 //
 
 namespace InvestmentTracker
@@ -100,7 +101,7 @@ namespace InvestmentTracker
                         myPortfolio.sellInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;
                     case 9:
-                        myPortfolio.savePortfolio(profileName);
+                        myPortfolio.savePortfolio();
                         choice = 9;
                         break;
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace InvestmentTracker
 {
@@ -16,6 +17,7 @@ namespace InvestmentTracker
         //these last two will help track total amount actually spent as apposed to invested in some other manner, like mining, or recieving as a gift
         private string name;
         protected string shortName;
+        protected string filePath;
         protected double netInvested;
         protected double marketValue;
         protected double currentValue;
@@ -23,6 +25,7 @@ namespace InvestmentTracker
         protected double totalSpent;
         protected double totalEarned;
         protected CoinmarketcapScraper coinMarketCapScraper;
+        protected List<string>[] transactions;
 
         public Investment(string name, string shortName, double netInvested, double amountOwned)
         {
@@ -31,9 +34,20 @@ namespace InvestmentTracker
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
 
+            transactions = new List<string>[3];
+            for(int i = 0; i < transactions.Length; i++)
+            {
+                transactions[i] = new List<string>();
+            }
+
+            transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
+            transactions[1].Add(Convert.ToString(netInvested));
+            transactions[2].Add(Convert.ToString(amountOwned));
+
+            filePath = Directory.GetCurrentDirectory();
+
             coinMarketCapScraper = new CoinmarketcapScraper(name);
-            marketValue = coinMarketCapScraper.scrapePrice();
-        } 
+        }
 
         public string getName() { return name; }
         public string getShortName() { return shortName; }
@@ -51,6 +65,10 @@ namespace InvestmentTracker
                 netInvested += price;
                 amountOwned += amount;
                 totalSpent += price;
+
+                transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
+                transactions[1].Add(Convert.ToString(price));
+                transactions[2].Add(Convert.ToString(amount));
             }
             else
                 Console.WriteLine("Invalid purchase amount");
@@ -58,11 +76,19 @@ namespace InvestmentTracker
 
         public void sell(double price, double amount)
         {
-            if(amount > 0)
+            if (amount > 0)
             {
                 netInvested -= price;
                 totalEarned += price;
                 amountOwned -= amount;
+
+                // make negative for history
+                price = 0 - price;
+                amount = 0 - amount;
+
+                transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
+                transactions[1].Add(Convert.ToString(price));
+                transactions[2].Add(Convert.ToString(amount));
             }
         }
 
@@ -82,14 +108,51 @@ namespace InvestmentTracker
         {
             if (compareInvestment == null)
                 return 1;
-            else 
+            else
                 return this.currentValue.CompareTo(compareInvestment.getCurrentValue());
         }
-
-        public void display()
+        public void saveHistory(string profile)
         {
-            Console.WriteLine(name + " " + shortName + " " + currentValue);
+            filePath = Directory.GetCurrentDirectory();
+            int endPathIndex = filePath.IndexOf("bin", 0);
+            filePath = filePath.Substring(0, endPathIndex) + profile + name + ".txt";
+            StreamWriter output = new StreamWriter(filePath);
+            for (int i = 0; i < transactions[0].Count; i++)
+            {
+                output.WriteLine(transactions[0][i] + "#" + transactions[1][i] + "#" + transactions[2][i]);
+            }
+
+            output.Close();
         }
 
+        public void loadHistory(string profile)
+        {
+            int endPathIndex = filePath.IndexOf("bin", 0);
+            filePath = filePath.Substring(0, endPathIndex) + profile + name + ".txt";
+
+            if (File.Exists(filePath))
+            {
+                StreamReader input = new StreamReader(filePath);
+                string temp;
+                string[] data = new string[3];
+
+                transactions[0].Clear();
+                transactions[1].Clear();
+                transactions[2].Clear();
+
+                while (!input.EndOfStream)
+                {
+                    temp = input.ReadLine();
+                    data = temp.Split('#');
+
+                    transactions[0].Add(data[0]);
+                    transactions[1].Add(data[1]);
+                    transactions[2].Add(data[2]);
+                }
+                input.Close();
+            }
+            else
+                Console.WriteLine("Failed to load transaction history, file not found");
+        }
     }
 }
