@@ -115,7 +115,7 @@ namespace InvestmentTracker
         {
             double oldValue = Convert.ToDouble(transactions[3][transactions[3].Count-1]);
             oldValue *= amountOwned;
-            return oldValue / currentValue;
+            return ((currentValue - oldValue) / oldValue) * 100;
         }
 
         public int CompareTo(Investment compareInvestment)

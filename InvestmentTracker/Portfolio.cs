@@ -129,7 +129,7 @@ namespace InvestmentTracker
                 value += invest.getCurrentValue();
             }
 
-            return oldValue / value;
+            return ((value - oldValue) / oldValue) * 100;
         }
         public double getTotalNetInvested()
         {
