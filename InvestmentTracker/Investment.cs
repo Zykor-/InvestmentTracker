@@ -50,6 +50,7 @@ namespace InvestmentTracker
             {
                 netInvested += price;
                 amountOwned += amount;
+                totalSpent += price;
             }
             else
                 Console.WriteLine("Invalid purchase amount");
@@ -60,12 +61,14 @@ namespace InvestmentTracker
             if(amount > 0)
             {
                 netInvested -= price;
+                totalEarned += price;
                 amountOwned -= amount;
             }
         }
 
         public void updateValues()
         {
+            coinMarketCapScraper = new CoinmarketcapScraper(name);
             marketValue = coinMarketCapScraper.scrapePrice();
             currentValue = amountOwned * marketValue;
         }

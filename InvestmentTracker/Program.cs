@@ -8,7 +8,7 @@
 // Web app
 // More analytics (probably after transaction history)
 // scraper factory, scraper for non-cryptos
-// Real-time updating for market values
+// 
 // Graphical data
 // Figure out why values don't update in 'real' time as you buy/sell investments
 // make investment names input non-case sensitive
@@ -16,6 +16,7 @@
 //RECENTLY TODO-ED
 // buy/sell function (not actually functional)
 // added inheritence for scraper
+// Real-time updating for market values *** I think i fixed this ***
 //
 
 namespace InvestmentTracker
@@ -31,8 +32,6 @@ namespace InvestmentTracker
             myPortfolio.loadPortfolio(profileName);
             Console.WriteLine("Loading market...");
             myPortfolio.loadMarket();
-            Console.WriteLine("Sorting...");
-            myPortfolio.sortByValue();
             string temp, temp2, temp3, temp4;
 
             int choice = 0;
@@ -51,6 +50,8 @@ namespace InvestmentTracker
                 switch (choice)
                 {
                     case 1:
+                        myPortfolio.update();
+                        myPortfolio.sortByValue();
                         myPortfolio.display();
                         break;
                     case 2:
@@ -60,7 +61,7 @@ namespace InvestmentTracker
                         temp2 = Console.ReadLine();
                         Console.WriteLine("Enter invested dollar amount: ");
                         temp3 = Console.ReadLine();
-                        Console.WriteLine("Enter amount of stock/currency owned: ");
+                        Console.WriteLine("Enter amount of stock/currency purchased: ");
                         temp4 = Console.ReadLine();
 
                         myPortfolio.buyInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));

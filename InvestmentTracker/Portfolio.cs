@@ -67,6 +67,13 @@ namespace InvestmentTracker
             }
         }
 
+        public void update()
+        {
+            foreach(Investment invest in investments)
+            {
+                invest.updateValues();
+            }
+        }
         public void display()
         {
             Console.WriteLine("\nName \tOwned \t\tInvested \tValue \t\tGain/Loss");
