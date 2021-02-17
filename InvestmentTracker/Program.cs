@@ -64,7 +64,7 @@ namespace InvestmentTracker
 
                         myPortfolio.buyInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
 
-                        // *** I commented this out because A) i removed the addInvestment function and B) I don't want to have to retype everything when buying investments
+                        // *** I commented this out because A) i removed the addInvestment function and B) I don't want to have to retype everything when buying investments and C) I want to avoid nested loops as much as possible
 
                         //while (subChoice != 2)
                         //{
