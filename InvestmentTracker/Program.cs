@@ -7,14 +7,15 @@
 // Android app
 // Web app
 // More analytics (probably after transaction history)
-// Split Investment class into 2 subclasses, one for stocks and one for cryptos (each will have different scrapers) or do I split scraper into sub classes?
+// scraper factory, scraper for non-cryptos
 // Real-time updating for market values
 // Graphical data
 // Figure out why values don't update in 'real' time as you buy/sell investments
 // make investment names input non-case sensitive
 
 //RECENTLY TODO-ED
-// buy/sell function (not actually functional) ***DONE***
+// buy/sell function (not actually functional)
+// added inheritence for scraper
 //
 
 namespace InvestmentTracker
@@ -64,8 +65,8 @@ namespace InvestmentTracker
 
                         myPortfolio.buyInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
 
-                        // *** I commented this out because A) i removed the addInvestment function and B) I don't want to have to retype everything when buying investments and C) I want to avoid nested loops as much as possible
-
+                        // *** I commented this out because A) i removed the addInvestment method and B) I don't want to have to retype everything when buying investments and C) I want to avoid nested loops as much as possible
+                        // Also instead of Console.WriteLine(""); you can just do Console.WriteLine(); quotations are not required
                         //while (subChoice != 2)
                         //{
                         //    Console.WriteLine("");
