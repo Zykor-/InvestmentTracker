@@ -76,13 +76,14 @@ namespace InvestmentTracker
         }
         public void display()
         {
-            Console.WriteLine("\nName \tOwned \t\tInvested \tValue \t\tGain/Loss");
+            Console.WriteLine("\nName \tOwned \t\tInvested \tValue \t\tGain/Loss \tRecent Change");
 
             foreach (Investment invest in investments)
             {
-                Console.WriteLine(invest.getShortName() + "\t{0:N8}\t${1:N2}\t\t${2:N2}\t\t{3:N2}%", invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains());
+                Console.WriteLine(invest.getShortName() + "\t{0:N8}\t${1:N2}\t\t${2:N2}\t\t{3:N2}%\t\t{4:N2}%", 
+                    invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains(), invest.getRecentGains());
             }
-            Console.WriteLine("Total" + "\t\t\t${0:N2} \t${1:N2} \t{2:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains());
+            Console.WriteLine("Total" + "\t\t\t${0:N2} \t${1:N2} \t{2:N2}% \t\t{3:N2}%\n", getTotalNetInvested(), getTotalValue(), getTotalGains(), getTotalRecentGains());
         }
 
         public void sortByValue()
@@ -115,6 +116,20 @@ namespace InvestmentTracker
             }
 
             return ((value - invested) / invested) * 100;
+        }
+
+        public double getTotalRecentGains()
+        {
+            double oldValue = 0;
+            double value = 0;
+
+            foreach (Investment invest in investments)
+            {
+                oldValue += invest.getOldValue();
+                value += invest.getCurrentValue();
+            }
+
+            return oldValue / value;
         }
         public double getTotalNetInvested()
         {
