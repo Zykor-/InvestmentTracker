@@ -54,7 +54,12 @@ namespace InvestmentTracker
         public string getShortName() { return shortName; }
         public double getNetInvested() { return netInvested; }
         public double getAmountOwned() { return amountOwned; }
-        public double getMarketValue() { return marketValue; }
+        public double getMarketValue() 
+        {
+            coinMarketCapScraper = new CoinmarketcapScraper(name);
+            marketValue = coinMarketCapScraper.scrapePrice();
+            return marketValue; 
+        }
         public double getCurrentValue() { return currentValue; }
         public CoinmarketcapScraper getCoinMarketCapScraper() { return coinMarketCapScraper; }
         public void setMarketValue(double marketValue) { this.marketValue = marketValue; }
@@ -101,9 +106,7 @@ namespace InvestmentTracker
 
         public void updateValues()
         {
-            coinMarketCapScraper = new CoinmarketcapScraper(name);
-            marketValue = coinMarketCapScraper.scrapePrice();
-            currentValue = amountOwned * marketValue;
+            currentValue = amountOwned * getMarketValue();
         }
 
         public double getGains()
@@ -113,8 +116,16 @@ namespace InvestmentTracker
         
         public double getRecentGains()
         {
-            double oldValue = Convert.ToDouble(transactions[3][transactions[3].Count-1]);
-            oldValue *= amountOwned;
+            double oldValue = Math.Abs(Convert.ToDouble(transactions[3][transactions[3].Count-1]));
+            if (amountOwned == 0)
+            {
+                double prevOwned = Math.Abs(Convert.ToDouble(transactions[2][transactions[2].Count - 1]));
+                double prevCurrentValue = prevOwned * getMarketValue();
+                oldValue *= prevOwned;
+                return ((prevCurrentValue - oldValue) / oldValue) * 100;
+            }
+            else
+                oldValue *= amountOwned;
             return ((currentValue - oldValue) / oldValue) * 100;
         }
 

@@ -5,6 +5,7 @@
 // Perpetual removal of code smells
 // Android app
 // Web app
+// database
 // More analytics (probably after transaction history)
 // scraper factory, scraper for non-cryptos
 // Graphical data
@@ -12,6 +13,8 @@
 // add different types of transactions, purchase, sell, gift, award, mined, etc
 // scrape short names so user doesn't have to input
 // when buying or selling, have either long name or short name be valid, non case sensitive
+// different ways to sort like by gains, alphabetical, etc
+// organize profile data into individual folders
 // 
 
 //RECENTLY TODO-ED
