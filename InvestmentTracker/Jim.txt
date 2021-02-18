@@ -1,6 +1,6 @@
 bitcoin BTC 80.19 0.00197322
-dogecoin DOGE 45.99 1000
 bitcoin-cash BCH 37.68 0.07075972
+dogecoin DOGE 45.99 1000
 filecoin FIL 50 1.13033018
 algorand ALGO 41 29.902694
 celo CGLD 30.98 7.00661416

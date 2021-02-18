@@ -3,21 +3,23 @@
 
 //TODO
 // Perpetual removal of code smells
-// gains since last transaction **** JIM WILL DO ****
 // Android app
 // Web app
 // More analytics (probably after transaction history)
 // scraper factory, scraper for non-cryptos
 // Graphical data
-// Figure out why values don't update in 'real' time as you buy/sell investments
 // make investment names input non-case sensitive
+// add different types of transactions, purchase, sell, gift, award, mined, etc
+// scrape short names so user doesn't have to input
+// when buying or selling, have either long name or short name be valid, non case sensitive
 // 
 
 //RECENTLY TODO-ED
-// buy/sell function (not actually functional)
+// buy/sell
 // added inheritence for scraper
-// Real-time updating for market values *** I think i fixed this ***
+// Real-time updating for market values
 // Transaction History saving and loading
+// gains since last transaction
 //
 
 namespace InvestmentTracker
