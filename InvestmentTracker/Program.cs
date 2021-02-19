@@ -36,8 +36,6 @@ namespace InvestmentTracker
             Portfolio myPortfolio = new Portfolio(profileName);
             Console.WriteLine("Loading portfolio...");
             myPortfolio.loadPortfolio(profileName);
-            Console.WriteLine("Loading market...");
-            myPortfolio.loadMarket();
             string temp, temp2, temp3, temp4;
 
             int choice = 0;
@@ -56,7 +54,7 @@ namespace InvestmentTracker
                 switch (choice)
                 {
                     case 1:
-                        myPortfolio.update();
+                        myPortfolio.loadMarket();
                         myPortfolio.sortByValue();
                         myPortfolio.display();
                         break;

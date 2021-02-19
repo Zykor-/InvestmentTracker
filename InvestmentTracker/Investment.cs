@@ -25,8 +25,9 @@ namespace InvestmentTracker
         protected double totalSpent;
         protected double totalEarned;
         protected CoinmarketcapScraper coinMarketCapScraper;
-        protected List<string>[] transactions;
+        protected List<Transaction> transactions;
 
+        //Constructor for reading in data from file
         public Investment(string name, string shortName, double netInvested, double amountOwned, double marketPrice)
         {
             this.name = name;
@@ -34,16 +35,24 @@ namespace InvestmentTracker
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
 
-            transactions = new List<string>[4];
-            for(int i = 0; i < transactions.Length; i++)
-            {
-                transactions[i] = new List<string>();
-            }
+            transactions = new List<Transaction>();
 
-            transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
-            transactions[1].Add(Convert.ToString(netInvested));
-            transactions[2].Add(Convert.ToString(amountOwned));
-            transactions[3].Add(Convert.ToString(marketPrice));
+            filePath = Directory.GetCurrentDirectory();
+
+            coinMarketCapScraper = new CoinmarketcapScraper(name);
+        }
+
+        //Constructor including purchase
+        public Investment(string name, string shortName, double netInvested, double amountOwned, double marketPrice, string type)
+        {
+            this.name = name;
+            this.shortName = shortName;
+            this.netInvested = netInvested;
+            this.amountOwned = amountOwned;
+
+            transactions = new List<Transaction>();
+
+            transactions.Add(new Transaction(type, DateTime.Now.ToString("MM/dd/yyyy H:mm"), netInvested, amountOwned, marketPrice));
 
             filePath = Directory.GetCurrentDirectory();
 
@@ -61,11 +70,13 @@ namespace InvestmentTracker
             return marketValue; 
         }
         public double getCurrentValue() { return currentValue; }
+        public double getTotalSpent() { return totalSpent; }
+        public double getTotalEarned() { return totalEarned; }
         public CoinmarketcapScraper getCoinMarketCapScraper() { return coinMarketCapScraper; }
         public void setMarketValue(double marketValue) { this.marketValue = marketValue; }
         public double getOldValue()
         {
-            return Convert.ToDouble(transactions[3][transactions[3].Count-1]) * amountOwned;
+            return transactions[transactions.Count - 1].getMarketValue() * amountOwned;
         }
 
         public void purchase(double price, double amount, double marketPrice)
@@ -76,10 +87,7 @@ namespace InvestmentTracker
                 amountOwned += amount;
                 totalSpent += price;
 
-                transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
-                transactions[1].Add(Convert.ToString(price));
-                transactions[2].Add(Convert.ToString(amount));
-                transactions[3].Add(Convert.ToString(marketPrice));
+                transactions.Add(new Transaction("purchase", DateTime.Now.ToString("MM/dd/yyyy H:mm"), price, amount, marketPrice));
             }
             else
                 Console.WriteLine("Invalid purchase amount");
@@ -97,10 +105,7 @@ namespace InvestmentTracker
                 price = 0 - price;
                 amount = 0 - amount;
 
-                transactions[0].Add(DateTime.Now.ToString("MM/dd/yyyy H:mm"));
-                transactions[1].Add(Convert.ToString(price));
-                transactions[2].Add(Convert.ToString(amount));
-                transactions[3].Add(Convert.ToString(marketPrice));
+                transactions.Add(new Transaction("sell", DateTime.Now.ToString("MM/dd/yyyy H:mm"), price, amount, marketPrice));
             }
         }
 
@@ -116,10 +121,10 @@ namespace InvestmentTracker
         
         public double getRecentGains()
         {
-            double oldValue = Math.Abs(Convert.ToDouble(transactions[3][transactions[3].Count-1]));
+            double oldValue = Math.Abs(transactions[transactions.Count-1].getMarketValue());
             if (amountOwned == 0)
             {
-                double prevOwned = Math.Abs(Convert.ToDouble(transactions[2][transactions[2].Count - 1]));
+                double prevOwned = Math.Abs(transactions[transactions.Count - 1].getInvestmentAmount()); ;
                 double prevCurrentValue = prevOwned * getMarketValue();
                 oldValue *= prevOwned;
                 return ((prevCurrentValue - oldValue) / oldValue) * 100;
@@ -142,9 +147,10 @@ namespace InvestmentTracker
             int endPathIndex = filePath.IndexOf("bin", 0);
             filePath = filePath.Substring(0, endPathIndex) + profile + name + ".txt";
             StreamWriter output = new StreamWriter(filePath);
-            for (int i = 0; i < transactions[0].Count; i++)
+            for (int i = 0; i < transactions.Count; i++)
             {
-                output.WriteLine(transactions[0][i] + "#" + transactions[1][i] + "#" + transactions[2][i] + "#" + transactions[3][i]);
+                output.WriteLine(transactions[i].getTime() + "#" + transactions[i].getType() + "#" + transactions[i].getDollarAmount() + "#" 
+                    + transactions[i].getInvestmentAmount() + "#" + transactions[i].getMarketValue());
             }
 
             output.Close();
@@ -161,22 +167,26 @@ namespace InvestmentTracker
                 string temp;
                 string[] data;
 
-                transactions[0].Clear();
-                transactions[1].Clear();
-                transactions[2].Clear();
-                transactions[3].Clear();
-
                 while (!input.EndOfStream)
                 {
                     temp = input.ReadLine();
                     data = temp.Split('#');
 
-                    transactions[0].Add(data[0]);
-                    transactions[1].Add(data[1]);
-                    transactions[2].Add(data[2]);
-                    transactions[3].Add(data[3]);
+                    transactions.Add(new Transaction(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
                 }
                 input.Close();
+
+                for(int i = 0; i < transactions.Count; i++)
+                {
+                    if(transactions[i].getType() == "purchase")
+                    {
+                        totalSpent += transactions[i].getDollarAmount();
+                    }
+                    else if(transactions[i].getType() == "sell")
+                    {
+                        totalEarned -= transactions[i].getDollarAmount();
+                    }
+                }
             }
             else
                 Console.WriteLine("Failed to load transaction history, file not found");
