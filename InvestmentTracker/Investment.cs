@@ -87,7 +87,7 @@ namespace InvestmentTracker
                 amountOwned += amount;
                 totalSpent += price;
 
-                transactions.Add(new Transaction("purchase", DateTime.Now.ToString("MM/dd/yyyy H:mm"), price, amount, marketPrice));
+                transactions.Add(new Transaction(DateTime.Now.ToString("MM/dd/yyyy H:mm"), "purchase", price, amount, marketPrice));
             }
             else
                 Console.WriteLine("Invalid purchase amount");
@@ -105,8 +105,32 @@ namespace InvestmentTracker
                 price = 0 - price;
                 amount = 0 - amount;
 
-                transactions.Add(new Transaction("sell", DateTime.Now.ToString("MM/dd/yyyy H:mm"), price, amount, marketPrice));
+                transactions.Add(new Transaction(DateTime.Now.ToString("MM/dd/yyyy H:mm"), "sell", price, amount, marketPrice));
             }
+        }
+        public void award(double dollarAmount, double amount, double marketPrice)
+        {
+            if (amount > 0)
+            {
+                netInvested += dollarAmount;
+                amountOwned += amount;
+
+                transactions.Add(new Transaction(DateTime.Now.ToString("MM/dd/yyyy H:mm"), "award", dollarAmount, amount, marketPrice));
+            }
+            else
+                Console.WriteLine("Invalid purchase amount");
+        }
+        public void mine(double dollarAmount, double amount, double marketPrice)
+        {
+            if (amount > 0)
+            {
+                netInvested += dollarAmount;
+                amountOwned += amount;
+
+                transactions.Add(new Transaction(DateTime.Now.ToString("MM/dd/yyyy H:mm"), "mine", dollarAmount, amount, marketPrice));
+            }
+            else
+                Console.WriteLine("Invalid purchase amount");
         }
 
         public void updateValues()

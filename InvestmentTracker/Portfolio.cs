@@ -41,6 +41,54 @@ namespace InvestmentTracker
             }
         }
 
+        public void awardInvestment(string name, string shortName, double dollarValue, double amountAwarded)
+        {
+            //temporary arbitrary fix for passive awards that are less than 1 cent
+            if (dollarValue == 0)
+                dollarValue = .006537931;
+
+            if (!investments.Exists(p => p.getName() == name))
+            {
+                
+                investments.Add(new Investment(name, shortName, dollarValue, amountAwarded, dollarValue / amountAwarded, "award"));
+            }
+            else
+            {
+                foreach (Investment invest in investments)
+                {
+                    if (invest.getName() == name)
+                    {
+                        invest.award(dollarValue, amountAwarded, dollarValue / amountAwarded);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void mineInvestment(string name, string shortName, double dollarValue, double amountMined)
+        {
+            //temporary arbitrary fix for passive awards that are less than 1 cent
+            if (dollarValue == 0)
+                dollarValue = .006537931;
+
+            if (!investments.Exists(p => p.getName() == name))
+            {
+
+                investments.Add(new Investment(name, shortName, dollarValue, amountMined, dollarValue / amountMined, "mine"));
+            }
+            else
+            {
+                foreach (Investment invest in investments)
+                {
+                    if (invest.getName() == name)
+                    {
+                        invest.award(dollarValue, amountMined, dollarValue / amountMined);
+                        break;
+                    }
+                }
+            }
+        }
+
         public void sellInvestment(string name, double amountInvested, double amountSold)
         {
             //if investment isn't in portfolio, throw error

@@ -47,6 +47,8 @@ namespace InvestmentTracker
                 Console.WriteLine("1: View portfolio");
                 Console.WriteLine("2: Buy investment");
                 Console.WriteLine("3: Sell investment");
+                Console.WriteLine("4: Add awarded investment");
+                Console.WriteLine("5: Add mined crypto");
                 Console.WriteLine("9: Save and exit");
 
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -102,6 +104,28 @@ namespace InvestmentTracker
                         Console.WriteLine("Enter amount of investment sold");
                         temp3 = Console.ReadLine();
                         myPortfolio.sellInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
+                        break;
+                    case 4:
+                        Console.WriteLine("Enter investment name: ");
+                        temp = Console.ReadLine();
+                        Console.WriteLine("Enter investment short name: ");
+                        temp2 = Console.ReadLine();
+                        Console.WriteLine("Enter invested dollar amount: ");
+                        temp3 = Console.ReadLine();
+                        Console.WriteLine("Enter amount of stock/currency awarded: ");
+                        temp4 = Console.ReadLine();
+                        myPortfolio.awardInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        break;
+                    case 5:
+                        Console.WriteLine("Enter investment name: ");
+                        temp = Console.ReadLine();
+                        Console.WriteLine("Enter investment short name: ");
+                        temp2 = Console.ReadLine();
+                        Console.WriteLine("Enter invested dollar amount: ");
+                        temp3 = Console.ReadLine();
+                        Console.WriteLine("Enter amount of stock/currency mined: ");
+                        temp4 = Console.ReadLine();
+                        myPortfolio.mineInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
                         break;
                     case 9:
                         myPortfolio.savePortfolio();
