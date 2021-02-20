@@ -70,7 +70,21 @@ namespace InvestmentTracker
             return marketValue; 
         }
         public double getCurrentValue() { return currentValue; }
-        public double getTotalSpent() { return totalSpent; }
+        public double getTotalSpent() 
+        {
+            totalSpent = 0;
+
+            foreach (Transaction t in transactions)
+            {
+                if (t.getType() == "purchase")
+                    totalSpent += t.getDollarAmount();
+                else if (t.getType() == "sell")
+                    totalSpent += t.getDollarAmount();
+            }
+            if (totalSpent < 0)
+                totalSpent = 0;
+            return totalSpent; 
+        }
         public double getTotalEarned() { return totalEarned; }
         public CoinmarketcapScraper getCoinMarketCapScraper() { return coinMarketCapScraper; }
         public void setMarketValue(double marketValue) { this.marketValue = marketValue; }

@@ -15,6 +15,7 @@
 // when buying or selling, have either long name or short name be valid, non case sensitive
 // different ways to sort like by gains, alphabetical, etc
 // organize profile data into individual folders
+// fix gains when netInvested is 0 or negative
 // 
 
 //RECENTLY TODO-ED
