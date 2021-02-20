@@ -37,7 +37,7 @@ namespace InvestmentTracker
             Portfolio myPortfolio = new Portfolio(profileName);
             Console.WriteLine("Loading portfolio...");
             myPortfolio.loadPortfolio(profileName);
-            string temp, temp2, temp3, temp4;
+            string temp, temp2, temp3;
 
             int choice = 0;
             //int subChoice = 0;
@@ -50,6 +50,7 @@ namespace InvestmentTracker
                 Console.WriteLine("3: Sell investment");
                 Console.WriteLine("4: Add awarded investment");
                 Console.WriteLine("5: Add mined crypto");
+                Console.WriteLine("8: Tests");
                 Console.WriteLine("9: Save and exit");
 
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -64,14 +65,12 @@ namespace InvestmentTracker
                     case 2:
                         Console.WriteLine("Enter investment name: ");
                         temp = Console.ReadLine();
-                        Console.WriteLine("Enter investment short name: ");
-                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter invested dollar amount: ");
-                        temp3 = Console.ReadLine();
+                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter amount of stock/currency purchased: ");
-                        temp4 = Console.ReadLine();
+                        temp3 = Console.ReadLine();
 
-                        myPortfolio.buyInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        myPortfolio.buyInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
 
                         // *** I commented this out because A) i removed the addInvestment method and B) I don't want to have to retype everything when buying investments and C) I want to avoid nested loops as much as possible
                         // Also instead of Console.WriteLine(""); you can just do Console.WriteLine(); quotations are not required
@@ -109,24 +108,24 @@ namespace InvestmentTracker
                     case 4:
                         Console.WriteLine("Enter investment name: ");
                         temp = Console.ReadLine();
-                        Console.WriteLine("Enter investment short name: ");
-                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter invested dollar amount: ");
-                        temp3 = Console.ReadLine();
+                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter amount of stock/currency awarded: ");
-                        temp4 = Console.ReadLine();
-                        myPortfolio.awardInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        temp3 = Console.ReadLine();
+                        myPortfolio.awardInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;
                     case 5:
                         Console.WriteLine("Enter investment name: ");
                         temp = Console.ReadLine();
-                        Console.WriteLine("Enter investment short name: ");
-                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter invested dollar amount: ");
-                        temp3 = Console.ReadLine();
+                        temp2 = Console.ReadLine();
                         Console.WriteLine("Enter amount of stock/currency mined: ");
-                        temp4 = Console.ReadLine();
-                        myPortfolio.mineInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
+                        temp3 = Console.ReadLine();
+                        myPortfolio.mineInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
+                        break;
+                    case 8:
+                        Scraper testScraper = new CoinmarketcapScraper("bitcoin");
+                        Console.WriteLine(testScraper.scrapeShortName());
                         break;
                     case 9:
                         myPortfolio.savePortfolio();

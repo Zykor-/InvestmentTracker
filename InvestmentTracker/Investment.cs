@@ -31,9 +31,9 @@ namespace InvestmentTracker
         public Investment(string name, string shortName, double netInvested, double amountOwned, double marketPrice)
         {
             this.name = name;
-            this.shortName = shortName;
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
+            this.shortName = shortName;
 
             transactions = new List<Transaction>();
 
@@ -43,10 +43,9 @@ namespace InvestmentTracker
         }
 
         //Constructor including purchase
-        public Investment(string name, string shortName, double netInvested, double amountOwned, double marketPrice, string type)
+        public Investment(string name, double netInvested, double amountOwned, double marketPrice, string type)
         {
             this.name = name;
-            this.shortName = shortName;
             this.netInvested = netInvested;
             this.amountOwned = amountOwned;
 
@@ -57,6 +56,7 @@ namespace InvestmentTracker
             filePath = Directory.GetCurrentDirectory();
 
             coinMarketCapScraper = new CoinmarketcapScraper(name);
+            shortName = coinMarketCapScraper.scrapeShortName();
         }
 
         public string getName() { return name; }

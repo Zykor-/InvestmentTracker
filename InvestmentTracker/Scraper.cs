@@ -13,5 +13,7 @@ namespace InvestmentTracker
         protected Task<string> html;
 
         public abstract double scrapePrice();
+        public abstract void displayData();
+        public abstract string scrapeShortName();
     }
 }

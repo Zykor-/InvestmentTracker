@@ -20,12 +20,12 @@ namespace InvestmentTracker
             filePath = filePath.Substring(0, endPathIndex) + name + ".txt";
         }
 
-        public void buyInvestment(string name, string shortName, double amountInvested, double amountPurchased)
+        public void buyInvestment(string name, double amountInvested, double amountPurchased)
         {
             //if investment isn't already in portfolio, add to it
             if(!investments.Exists(p => p.getName() == name))
             {
-                investments.Add(new Investment(name, shortName, amountInvested, amountPurchased, amountInvested/amountPurchased, "purchase"));
+                investments.Add(new Investment(name, amountInvested, amountPurchased, amountInvested/amountPurchased, "purchase"));
             }
             //else add to existing investment
             else
@@ -41,7 +41,7 @@ namespace InvestmentTracker
             }
         }
 
-        public void awardInvestment(string name, string shortName, double dollarValue, double amountAwarded)
+        public void awardInvestment(string name, double dollarValue, double amountAwarded)
         {
             //temporary arbitrary fix for passive awards that are less than 1 cent
             if (dollarValue == 0)
@@ -50,7 +50,7 @@ namespace InvestmentTracker
             if (!investments.Exists(p => p.getName() == name))
             {
                 
-                investments.Add(new Investment(name, shortName, dollarValue, amountAwarded, dollarValue / amountAwarded, "award"));
+                investments.Add(new Investment(name, dollarValue, amountAwarded, dollarValue / amountAwarded, "award"));
             }
             else
             {
@@ -65,7 +65,7 @@ namespace InvestmentTracker
             }
         }
 
-        public void mineInvestment(string name, string shortName, double dollarValue, double amountMined)
+        public void mineInvestment(string name, double dollarValue, double amountMined)
         {
             //temporary arbitrary fix for passive awards that are less than 1 cent
             if (dollarValue == 0)
@@ -74,7 +74,7 @@ namespace InvestmentTracker
             if (!investments.Exists(p => p.getName() == name))
             {
 
-                investments.Add(new Investment(name, shortName, dollarValue, amountMined, dollarValue / amountMined, "mine"));
+                investments.Add(new Investment(name, dollarValue, amountMined, dollarValue / amountMined, "mine"));
             }
             else
             {

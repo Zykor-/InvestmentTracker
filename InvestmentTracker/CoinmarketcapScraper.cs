@@ -14,7 +14,7 @@ namespace InvestmentTracker
         }
 
         //for testing purposes
-        public void displayData()
+        public override void displayData()
         {
             Console.WriteLine(html.Result);
         }
@@ -31,8 +31,7 @@ namespace InvestmentTracker
                 {
                     temp = chunk;
                     break;
-                }
-                    
+                }                    
             }
 
             string[] temp2 = temp.Split(":");
@@ -41,6 +40,29 @@ namespace InvestmentTracker
             
 
             return price;
+        }
+
+        public override string scrapeShortName()
+        {
+            string shortName;
+            string[] data = html.Result.Split(',');
+            string temp = "";
+
+            foreach (string chunk in data)
+            {
+                if (chunk.StartsWith("\"currency\":"))
+                {
+                    temp = chunk;
+                    break;
+                }
+            }
+
+            string[] temp2 = temp.Split(":");
+            shortName = temp2[1];
+
+            shortName = shortName.Replace("\"", "");
+
+            return shortName;
         }
     }
 }
