@@ -11,7 +11,6 @@
 // Graphical data
 // make investment names input non-case sensitive
 // add different types of transactions, purchase, sell, gift, award, mined, etc
-// scrape short names so user doesn't have to input
 // when buying or selling, have either long name or short name be valid, non case sensitive
 // different ways to sort like by gains, alphabetical, etc
 // organize profile data into individual folders
@@ -19,11 +18,9 @@
 // 
 
 //RECENTLY TODO-ED
-// buy/sell
-// added inheritence for scraper
-// Real-time updating for market values
 // Transaction History saving and loading
 // gains since last transaction
+// scrape short names so user doesn't have to input
 //
 
 namespace InvestmentTracker
