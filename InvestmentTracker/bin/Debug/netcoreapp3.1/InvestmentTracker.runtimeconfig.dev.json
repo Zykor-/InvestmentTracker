@@ -3,7 +3,7 @@
     "additionalProbingPaths": [
       "C:\\Users\\jcorr\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\jcorr\\.nuget\\packages",
-      "E:\\Microsoft\\Xamarin\\NuGet"
+      "C:\\Microsoft\\Xamarin\\NuGet"
     ]
   }
 }
