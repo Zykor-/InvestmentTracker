@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\jcorr\\Source\\Repos\\Zykor-\\InvestmentTracker\\InvestmentTracker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\jcorr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
