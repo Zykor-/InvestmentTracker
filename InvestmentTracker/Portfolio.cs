@@ -218,7 +218,7 @@ namespace InvestmentTracker
             }
             else
             {
-                Console.WriteLine("New profile detected, creating new profile: " + profile);
+                //Console.WriteLine("New profile detected, creating new profile: " + profile);
             }
         }
 

@@ -177,7 +177,7 @@ namespace InvestmentTracker
             if (compareInvestment == null)
                 return 1;
             else
-                return this.currentValue.CompareTo(compareInvestment.getCurrentValue());
+                return this.getRecentGains().CompareTo(compareInvestment.getRecentGains());
         }
         public void saveHistory(string profile)
         {
