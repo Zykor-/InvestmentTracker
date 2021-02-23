@@ -218,7 +218,7 @@ namespace InvestmentTracker
             }
             else
             {
-                //Console.WriteLine("New profile detected, creating new profile: " + profile);
+                Console.WriteLine("New profile detected, creating new profile: " + profile);
             }
         }
 
@@ -238,7 +238,7 @@ namespace InvestmentTracker
         {
             foreach(Investment invest in investments)
             {
-                Console.WriteLine("Loading " + invest.getName() + " price...");
+                //Console.WriteLine("Loading " + invest.getName() + " price...");
                 invest.updateValues();
             }
         }
