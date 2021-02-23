@@ -238,6 +238,7 @@ namespace InvestmentTracker
         {
             foreach(Investment invest in investments)
             {
+                Console.WriteLine("Loading " + invest.getName() + " price...");
                 invest.updateValues();
             }
         }

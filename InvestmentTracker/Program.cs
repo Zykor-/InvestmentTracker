@@ -6,7 +6,7 @@
 // Android app
 // Web app
 // database
-// More analytics (probably after transaction history)
+// More analytics
 // scraper factory, scraper for non-cryptos
 // Graphical data
 // make investment names input non-case sensitive
@@ -15,6 +15,8 @@
 // different ways to sort like by gains, alphabetical, etc
 // organize profile data into individual folders
 // fix gains when netInvested is 0 or negative
+// add exceptions for html 404
+// add exceptions for invalid inputs
 // 
 
 //RECENTLY TODO-ED

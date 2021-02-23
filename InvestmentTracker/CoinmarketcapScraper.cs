@@ -10,6 +10,8 @@ namespace InvestmentTracker
         {
             this.url = "https://coinmarketcap.com/currencies/" + crypto;
             httpClient = new HttpClient();
+
+
             html = httpClient.GetStringAsync(url);
         }
 
@@ -21,6 +23,12 @@ namespace InvestmentTracker
 
         public override double scrapePrice()
         {
+            if(html.Result == null)
+            {
+                Console.WriteLine("Error scraping data");
+                return 0;
+            }
+
             double price = 0;
             string [] data = html.Result.Split(',');
             string temp = "";
