@@ -123,8 +123,8 @@ namespace InvestmentTracker
                         myPortfolio.mineInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;
                     case 8:
-                        Scraper testScraper = new CoinmarketcapScraper("bitcoin");
-                        Console.WriteLine(testScraper.scrapeShortName());
+                        Scraper testScraper = new YahooFinanceScraper("gme");
+                        testScraper.displayData();
                         break;
                     case 9:
                         myPortfolio.savePortfolio();
