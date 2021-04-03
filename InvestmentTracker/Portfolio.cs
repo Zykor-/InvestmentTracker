@@ -133,6 +133,8 @@ namespace InvestmentTracker
             investments.Reverse();
         }
 
+        public List<Investment> getInvestments() { return investments; }
+
         public double getTotalValue()
         {
             double value = 0;

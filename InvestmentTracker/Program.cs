@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 //TODO
@@ -71,29 +72,6 @@ namespace InvestmentTracker
 
                         myPortfolio.buyInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
 
-                        // *** I commented this out because A) i removed the addInvestment method and B) I don't want to have to retype everything when buying investments and C) I want to avoid nested loops as much as possible
-                        // Also instead of Console.WriteLine(""); you can just do Console.WriteLine(); quotations are not required
-                        //while (subChoice != 2)
-                        //{
-                        //    Console.WriteLine("");
-                        //    Console.WriteLine("Does this look right?");
-                        //    Console.WriteLine("1 Yes, 2 No");
-                        //    Console.WriteLine("Enter investment name: ", temp);
-                        //    Console.WriteLine("Enter investment short name: ", temp2);
-                        //    Console.WriteLine("Enter initial investment amount: ", temp3);
-                        //    Console.WriteLine("Enter amount of stock/currency owned: ", temp4);
-                        //    subChoice = Convert.ToInt32(Console.ReadLine());
-                        //    switch(subChoice)
-                        //    {
-                        //        case 1:
-                        //        myPortfolio.addInvestment(temp, temp2, Convert.ToDouble(temp3), Convert.ToDouble(temp4));
-                        //        Console.WriteLine("");
-                        //        Console.WriteLine("Saved")
-                        //        case 2:
-                        //        break;
-                        //    }
-                        //}
-
                         break;
                     case 3:
                         Console.WriteLine("Enter the name of the investment you are selling");
@@ -123,8 +101,8 @@ namespace InvestmentTracker
                         myPortfolio.mineInvestment(temp, Convert.ToDouble(temp2), Convert.ToDouble(temp3));
                         break;
                     case 8:
-                        Scraper testScraper = new YahooFinanceScraper("gme");
-                        testScraper.displayData();
+                        List<Investment> tempList = myPortfolio.getInvestments();
+                        tempList[0].getCoinMarketCapScraper().displayData();
                         break;
                     case 9:
                         myPortfolio.savePortfolio();
