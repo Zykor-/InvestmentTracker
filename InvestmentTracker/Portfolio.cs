@@ -9,7 +9,8 @@ namespace InvestmentTracker
     {
         private List<Investment> investments;
         private string filePath;
-        string name;
+        private string name;
+        private double cashInvestment;
 
         public Portfolio(string name) 
         {
@@ -117,14 +118,14 @@ namespace InvestmentTracker
 
         public void display()
         {
-            Console.WriteLine("\nName \tOwned \t\tInvested \tSpent \t\tValue \t\tGain/Loss \tRecent Change");
+            Console.WriteLine("\nName \tOwned \t\tInvested \tValue \t\tGain/Loss \tRecent Change");
 
             foreach (Investment invest in investments)
             {
-                Console.WriteLine(invest.getShortName() + "\t{0:N8}\t${1:N2}\t\t${2:N2}\t\t${3:N2}\t\t{4:N2}%\t\t{5:N2}%", 
-                    invest.getAmountOwned(), invest.getNetInvested(), invest.getTotalSpent(), invest.getCurrentValue(), invest.getGains(), invest.getRecentGains());
+                Console.WriteLine(invest.getShortName() + "\t{0:N8}\t${1:N2}\t\t${2:N2}\t\t${3:N2}%  \t{4:N2}%", 
+                    invest.getAmountOwned(), invest.getNetInvested(), invest.getCurrentValue(), invest.getGains(), invest.getRecentGains());
             }
-            Console.WriteLine("Total" + "\t\t\t${0:N2} \t${1:N2} \t{2:N2} \t\t{3:N2}% \t\t{4:N2}%\n", getTotalNetInvested(), getTotalSpent(), getTotalValue(), getTotalGains(), getTotalRecentGains());
+            Console.WriteLine("Total" + "\t\t\t${0:N2} \t${1:N2} \t{2:N2}% \t\t{3:N2}%\n", cashInvestment, getTotalValue(), getTotalGains(), getTotalRecentGains());
         }
 
         public void sortByValue()
@@ -150,12 +151,12 @@ namespace InvestmentTracker
         public double getTotalGains()
         {
             double value = 0;
-            double invested = 0;
+            double invested = cashInvestment;
 
             foreach (Investment invest in investments)
             {
                 value += invest.getCurrentValue();
-                invested += invest.getNetInvested();
+                //invested += invest.getNetInvested();
             }
 
             return ((value - invested) / invested) * 100;
@@ -185,16 +186,7 @@ namespace InvestmentTracker
 
             return value;
         }
-        public double getTotalSpent()
-        {
-            double total = 0;
-            foreach(Investment invest in investments)
-            {
-                total += invest.getTotalSpent();
-            }
 
-            return total;
-        }
         public void loadPortfolio(string profile)
         {
             if (File.Exists(filePath))
@@ -202,6 +194,9 @@ namespace InvestmentTracker
                 StreamReader input = new StreamReader(filePath);
                 string temp;
                 string[] data;
+
+                temp = input.ReadLine();
+                cashInvestment = Convert.ToDouble(temp);
 
                 while (!input.EndOfStream)
                 {
@@ -227,6 +222,7 @@ namespace InvestmentTracker
         public void savePortfolio()
         {
             StreamWriter output = new StreamWriter(filePath);
+            output.WriteLine(cashInvestment);
             foreach(Investment invest in investments)
             {
                 output.WriteLine(invest.getName() + " " + invest.getShortName() + " " + invest.getNetInvested() + " " + invest.getAmountOwned());
